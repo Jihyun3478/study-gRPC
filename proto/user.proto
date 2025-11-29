@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "github.com/Jihyun3478/study-grpc/proto";
+
+service UserService {
+    rpc CreateUser(CreateUserRequest) returns (User);
+    rpc GetUser(GetUserRequest) returns (User);
+    rpc ListUsers(ListUsersReqeust) returns (ListUsersResponse);
+}
+
+message User {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    int64 created_at = 4;
+}
+
+message CreateUserRequest {
+    string name = 1;
+    string email = 2;
+}
+
+message GetUserRequest {
+    string id = 1;
+}
+
+message ListUsersReqeust {
+    int32 limit = 1;
+}
+
+message ListUsersResponse {
+    repeated User users = 1;
+}

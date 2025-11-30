@@ -1,0 +1,74 @@
+==========================================
+REST API Performance Benchmark
+==========================================
+
+REST server connection verified
+
+Preparing test data...
+1000 users created
+
+Running performance tests...
+
+1. POST /users - 30s duration, 50 connections
+---
+Running 30s test @ http://localhost:8080/users
+  12 threads and 50 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.29ms    2.26ms  54.42ms   96.45%
+    Req/Sec     4.13k   583.06     7.17k    75.11%
+  1481914 requests in 30.09s, 292.90MB read
+Requests/sec:  49242.87
+Transfer/sec:      9.73MB
+
+
+2. GET /users/:id - 30s duration, 50 connections
+---
+Running 30s test @ http://localhost:8080/users/user1
+  12 threads and 50 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.23ms    1.96ms  45.93ms   95.94%
+    Req/Sec     4.18k   562.37     6.92k    73.56%
+  1499399 requests in 30.05s, 287.42MB read
+Requests/sec:  49896.20
+Transfer/sec:      9.56MB
+
+
+3. GET /users?limit=10 - 30s duration, 50 connections
+---
+Running 30s test @ http://localhost:8080/users?limit=10
+  12 threads and 50 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.26ms    2.03ms  51.25ms   95.60%
+    Req/Sec     4.15k   599.39    13.67k    74.56%
+  1487554 requests in 30.08s, 1.37GB read
+Requests/sec:  49454.71
+Transfer/sec:     46.56MB
+
+
+4. GET /users?limit=100 - 30s duration, 50 connections
+---
+Running 30s test @ http://localhost:8080/users?limit=100
+  12 threads and 50 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     2.56ms    4.27ms 133.46ms   93.34%
+    Req/Sec     2.37k   501.36     4.93k    66.86%
+  850410 requests in 30.09s, 6.87GB read
+Requests/sec:  28259.22
+Transfer/sec:    233.93MB
+
+
+5. GET /users?limit=1000 - 30s duration, 50 connections
+---
+Running 30s test @ http://localhost:8080/users?limit=1000
+  12 threads and 50 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     9.35ms   12.31ms 143.69ms   88.23%
+    Req/Sec   672.79    229.67     1.31k    64.02%
+  241466 requests in 30.10s, 19.21GB read
+Requests/sec:   8021.42
+Transfer/sec:    653.36MB
+
+
+==========================================
+REST Benchmark Completed
+==========================================

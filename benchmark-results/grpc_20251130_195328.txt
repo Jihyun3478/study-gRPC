@@ -1,0 +1,228 @@
+==========================================
+gRPC Performance Benchmark
+==========================================
+
+gRPC server connection verified
+
+Preparing test data...
+1000 users created
+
+Running performance tests...
+
+1. CreateUser - 30s duration, 50 concurrent
+---
+
+Summary:
+  Count:	1283909
+  Total:	30.00 s
+  Slowest:	69.01 ms
+  Fastest:	0.05 ms
+  Average:	0.77 ms
+  Requests/sec:	42798.24
+
+Response time histogram:
+  0.046  [1]      |
+  6.942  [996879] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  13.838 [2049]   |
+  20.734 [680]    |
+  27.631 [240]    |
+  34.527 [56]     |
+  41.423 [49]     |
+  48.319 [4]      |
+  55.216 [6]      |
+  62.112 [20]     |
+  69.008 [16]     |
+
+Latency distribution:
+  10 % in 0.32 ms 
+  25 % in 0.45 ms 
+  50 % in 0.61 ms 
+  75 % in 0.83 ms 
+  90 % in 1.24 ms 
+  95 % in 1.67 ms 
+  99 % in 3.60 ms 
+
+Status code distribution:
+  [OK]            1283902 responses   
+  [Canceled]      1 responses         
+  [Unavailable]   6 responses         
+
+Error distribution:
+  [6]   rpc error: code = Unavailable desc = error reading from server: read tcp [::1]:54132->[::1]:50052: use of closed network connection   
+  [1]   rpc error: code = Canceled desc = grpc: the client connection is closing                                                              
+
+
+
+2. GetUser - 30s duration, 50 concurrent
+---
+
+Summary:
+  Count:	1189321
+  Total:	30.00 s
+  Slowest:	114.01 ms
+  Fastest:	0.06 ms
+  Average:	0.84 ms
+  Requests/sec:	39643.06
+
+Response time histogram:
+  0.057   [1]      |
+  11.452  [997911] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  22.848  [1274]   |
+  34.243  [428]    |
+  45.639  [202]    |
+  57.034  [41]     |
+  68.430  [59]     |
+  79.825  [4]      |
+  91.221  [48]     |
+  102.616 [0]      |
+  114.012 [32]     |
+
+Latency distribution:
+  10 % in 0.34 ms 
+  25 % in 0.47 ms 
+  50 % in 0.64 ms 
+  75 % in 0.89 ms 
+  90 % in 1.33 ms 
+  95 % in 1.80 ms 
+  99 % in 4.19 ms 
+
+Status code distribution:
+  [OK]            1189280 responses   
+  [Unavailable]   41 responses        
+
+Error distribution:
+  [41]   rpc error: code = Unavailable desc = error reading from server: read tcp [::1]:54143->[::1]:50052: use of closed network connection   
+
+
+
+3. ListUsers(10) - 30s duration, 50 concurrent
+---
+
+Summary:
+  Count:	1021139
+  Total:	30.00 s
+  Slowest:	92.29 ms
+  Fastest:	0.08 ms
+  Average:	1.06 ms
+  Requests/sec:	34036.42
+
+Response time histogram:
+  0.080  [1]      |
+  9.302  [996692] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  18.523 [2522]   |
+  27.744 [528]    |
+  36.965 [130]    |
+  46.187 [94]     |
+  55.408 [25]     |
+  64.629 [7]      |
+  73.851 [0]      |
+  83.072 [0]      |
+  92.293 [1]      |
+
+Latency distribution:
+  10 % in 0.44 ms 
+  25 % in 0.61 ms 
+  50 % in 0.82 ms 
+  75 % in 1.14 ms 
+  90 % in 1.70 ms 
+  95 % in 2.29 ms 
+  99 % in 4.77 ms 
+
+Status code distribution:
+  [OK]            1021091 responses   
+  [Unavailable]   48 responses        
+
+Error distribution:
+  [48]   rpc error: code = Unavailable desc = error reading from server: read tcp [::1]:54222->[::1]:50052: use of closed network connection   
+
+
+
+4. ListUsers(100) - 30s duration, 50 concurrent
+---
+
+Summary:
+  Count:	394942
+  Total:	30.00 s
+  Slowest:	120.16 ms
+  Fastest:	0.31 ms
+  Average:	3.18 ms
+  Requests/sec:	13164.79
+
+Response time histogram:
+  0.307   [1]      |
+  12.292  [391555] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  24.278  [2656]   |
+  36.263  [380]    |
+  48.248  [99]     |
+  60.234  [81]     |
+  72.219  [24]     |
+  84.205  [51]     |
+  96.190  [30]     |
+  108.176 [16]     |
+  120.161 [1]      |
+
+Latency distribution:
+  10 % in 1.43 ms 
+  25 % in 2.00 ms 
+  50 % in 2.72 ms 
+  75 % in 3.68 ms 
+  90 % in 5.06 ms 
+  95 % in 6.33 ms 
+  99 % in 11.40 ms 
+
+Status code distribution:
+  [OK]            394894 responses   
+  [Canceled]      2 responses        
+  [Unavailable]   46 responses       
+
+Error distribution:
+  [2]    rpc error: code = Canceled desc = grpc: the client connection is closing                                                              
+  [46]   rpc error: code = Unavailable desc = error reading from server: read tcp [::1]:54263->[::1]:50052: use of closed network connection   
+
+
+
+5. ListUsers(1000) - 30s duration, 50 concurrent
+---
+
+Summary:
+  Count:	59830
+  Total:	30.02 s
+  Slowest:	207.90 ms
+  Fastest:	2.51 ms
+  Average:	22.40 ms
+  Requests/sec:	1993.00
+
+Response time histogram:
+  2.514   [1]     |
+  23.052  [34679] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  43.591  [22883] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  64.130  [1895]  |∎∎
+  84.669  [224]   |
+  105.207 [86]    |
+  125.746 [29]    |
+  146.285 [17]    |
+  166.824 [6]     |
+  187.362 [1]     |
+  207.901 [2]     |
+
+Latency distribution:
+  10 % in 9.88 ms 
+  25 % in 14.75 ms 
+  50 % in 21.08 ms 
+  75 % in 28.07 ms 
+  90 % in 35.61 ms 
+  95 % in 41.22 ms 
+  99 % in 56.88 ms 
+
+Status code distribution:
+  [Unavailable]   7 responses       
+  [OK]            59823 responses   
+
+Error distribution:
+  [7]   rpc error: code = Unavailable desc = error reading from server: read tcp [::1]:54305->[::1]:50052: use of closed network connection   
+
+
+
+==========================================
+gRPC Benchmark Completed
+==========================================
